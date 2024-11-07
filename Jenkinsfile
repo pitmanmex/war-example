@@ -18,7 +18,7 @@ pipeline {
 		stage('Deploy') {
 			steps {
 				/*bat 'D:\\devenv\\ambientes\\tomcat1\\bin\\shutdown.bat'*/
-				bat 'copy target\\ROOT.war D:\\devenv\\ambientes\\'+ params.DEPLOY_ENVIRONMENT +'\\webapps'
+				bat 'copy target\\ROOT.war D:\\devenv\\ambientes\\' + params.DEPLOY_ENVIRONMENT + '\\webapps'
 				/*bat 'D:\\devenv\\ambientes\\tomcat1\\bin\\startup.bat'*/
 			}
 		}
