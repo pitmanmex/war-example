@@ -14,13 +14,14 @@ pipeline {
 				bat 'mvn -B -q -P docker-build clean package'
 			}
 		}
-		/*
+		
 		stage('Deploy') {
 			steps {
-				sh 'docker build -t ' + params.DEPLOY_ENVIRONMENT + ' .'
-				sh 'cd ' + env.ENVS_DIR + ' && docker compose down ' + params.DEPLOY_ENVIRONMENT + ' && docker compose up -d ' + params.DEPLOY_ENVIRONMENT
+				bat 'D:\devenv\ambientes\tomcat1\bin\shutdown.bat'
+				bat 'copy target\ROOT.war D:\devenv\ambientes\tomcat1\webapps'
+				bat 'D:\devenv\ambientes\tomcat1\bin\startup.bat'
 			}
 		}
-  */
+  
 	}
 }
