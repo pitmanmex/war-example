@@ -5,7 +5,7 @@ pipeline {
 	}
 
 	parameters {
-		choice(name: 'DEPLOY_ENVIRONMENT', choices: ['tomcat1', 'tomcat2'], description: 'Ambiente de despliegue')
+		choice(name: 'DEPLOY_ENVIRONMENT', choices: ['ninguno', 'tomcat1', 'tomcat2'], description: 'Ambiente de despliegue')
 	}
 
 	stages {
@@ -16,6 +16,11 @@ pipeline {
 		}
 		
 		stage('Deploy') {
+			when {
+				not {
+					equals expected: 'ninguno', actual: params.DEPLOY_ENVIRONMENT
+				}
+			}
 			steps {
 				/*bat 'D:\\devenv\\ambientes\\tomcat1\\bin\\shutdown.bat'*/
 				bat 'copy target\\ROOT.war D:\\devenv\\ambientes\\' + params.DEPLOY_ENVIRONMENT + '\\webapps'
